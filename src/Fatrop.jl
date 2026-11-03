@@ -1,17 +1,26 @@
+# Copyright (c) 2026: Benoît Legat and contributors
+#
+# Use of this source code is governed by an MIT-style license that can be found
+# in the LICENSE.md file or at https://opensource.org/licenses/MIT.
+
 module Fatrop
 
-"""
-    hello(who::String)
+import Libdl
+import MathOptInterface as MOI
+import blasfeo_jll
 
-Return "Hello, `who`".
-"""
-hello(who::String) = "Hello, $who"
+# TODO use `fatrop_jll` once it is available in Yggdrasil
+const libfatrop = get(ENV, "JULIA_FATROP_LIBRARY_PATH", "libfatrop")
 
-"""
-    domath(x::Number)
+function __init__()
+    # `libfatrop` depends on `libblasfeo` which it finds only if it is
+    # already loaded.
+    Libdl.dlopen(blasfeo_jll.blasfeo)
+    return
+end
 
-Return `x + 5`.
-"""
-domath(x::Number) = x + 5
+include("C_wrapper.jl")
+include("structure.jl")
+include("MOI_wrapper.jl")
 
 end # module Fatrop
