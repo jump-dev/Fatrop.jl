@@ -2,3 +2,13 @@ name = "Fatrop"
 uuid = "e642cd79-288d-425b-9636-c3779f7594d6"
 version = "0.1.0"
 authors = ["Benoît Legat <benoit.legat@gmail.com>"]
+
+[deps]
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
+blasfeo_jll = "6b574d4a-bb57-5a4b-b7e6-1c794c903646"
+
+[compat]
+MathOptInterface = "1.51"
+blasfeo_jll = "0.1.4"
+julia = "1.10"
