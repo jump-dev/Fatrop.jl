@@ -156,36 +156,6 @@ function MOI.supports(
     return true
 end
 
-const _MODEL_ATTRIBUTES = Union{
-    MOI.Name,
-    MOI.ObjectiveSense,
-    MOI.ObjectiveFunctionType,
-    MOI.ObjectiveFunction,
-    MOI.NumberOfVariables,
-    MOI.ListOfVariableIndices,
-    MOI.ListOfConstraintTypesPresent,
-    MOI.NumberOfConstraints,
-    MOI.ListOfConstraintIndices,
-    MOI.ListOfModelAttributesSet,
-    MOI.ListOfVariableAttributesSet,
-    MOI.ListOfConstraintAttributesSet,
-}
-
-MOI.get(model::Optimizer, attr::_MODEL_ATTRIBUTES) = MOI.get(model.model, attr)
-
-const _INDEX_ATTRIBUTES = Union{
-    MOI.VariableName,
-    MOI.VariablePrimalStart,
-    Stage,
-    MOI.ConstraintName,
-    MOI.ConstraintFunction,
-    MOI.ConstraintSet,
-}
-
-function MOI.get(model::Optimizer, attr::_INDEX_ATTRIBUTES, index::MOI.Index)
-    return MOI.get(model.model, attr, index)
-end
-
 function MOI.set(
     model::Optimizer,
     attr::Union{Stage,MOI.VariablePrimalStart},
