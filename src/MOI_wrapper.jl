@@ -497,7 +497,7 @@ function MOI.optimize!(model::Optimizer)
         solver = fatrop_ocp_c_create(
             interface,
             @cfunction(_write, Cvoid, (Ptr{Cchar}, Cint)),
-            @cfunction(_flush, Cvoid, ())
+            @cfunction(_flush, Cvoid, ()),
         )
         try
             if model.silent
